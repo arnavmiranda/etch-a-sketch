@@ -4,22 +4,20 @@ button {
     display: flex;
     justify-self: center;
     border-radius: 8px;
-    background-color: rgb(88, 148, 246);
+    background-color: rgb(246, 204, 88);
     color: rgb(255, 255, 255);
     cursor: grab;
 }
 
-.cell {
-    width: 50px;
-    height: 50px;
-}
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .row {
     display: flex;
+    background-color: beige;
 }
 
 .hoverGrid {
