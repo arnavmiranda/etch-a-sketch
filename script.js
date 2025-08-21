@@ -26,16 +26,37 @@ function formGrid(num) {
             cell.style.boxSizing = "border-box";
             cell.style.width = SIDE_LENGTH + "px";
             cell.style.height = SIDE_LENGTH + "px";
+            cell.style.backgroundColor = "beige";
+            cell.style.opacity = 1;
             rowContainer.appendChild(cell);
         }
         container.appendChild(rowContainer);
     }
     let cellArray = Array.from(container.querySelectorAll(".cell"));
     for (const cell of cellArray) {
-        cell.addEventListener("mouseenter", () => cell.classList.toggle("hoverGrid"));
-        cell.addEventListener("mouseleave", () => cell.classList.toggle("hoverGrid"));
+        cell.addEventListener("mouseenter", function(element) {
+            if (cell.style.backgroundColor == "beige") {
+                cell.style.backgroundColor = generateRandomRgbColor();
+            } else {
+                let currentColor = cell.style.backgroundColor; 
+                let darkerColor = darkenRgb(currentColor, 0.1); 
+                cell.style.backgroundColor = darkerColor;
+            }
+        });
+    }
 }
 
+function generateRandomRgbColor() {
+  const r = Math.floor(Math.random() * 256); 
+  const g = Math.floor(Math.random() * 256); 
+  const b = Math.floor(Math.random() * 256); 
 
+  return `rgb(${r},${g},${b})`;
+}
+
+function darkenRgb(rgbString, factor) {
+    let rgb = rgbString.match(/\d+/g).map(Number);
+    let [r, g, b] = rgb.map(val => Math.max(0, val * (1 - factor)));
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
